@@ -1,39 +1,37 @@
 package app.src;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Train_Consist_Management_App {
 
     public static void main(String[] args) {
 
-        // Create ArrayList for passenger bogies
-        ArrayList<String> bogies = new ArrayList<>();
+        // Create HashSet for bogie IDs (ensures uniqueness)
+        HashSet<String> bogieIDs = new HashSet<>();
 
-        // Add bogies
-        bogies.add("Sleeper");
-        bogies.add("AC Chair");
-        bogies.add("First Class");
+        // Adding bogie IDs
+        bogieIDs.add("B101");
+        bogieIDs.add("B102");
+        bogieIDs.add("B103");
 
-        // Display bogies after insertion
-        System.out.println("Bogies after addition:");
-        System.out.println(bogies);
+        // Attempt to add duplicate IDs
+        bogieIDs.add("B102"); // Duplicate
+        bogieIDs.add("B101"); // Duplicate
 
-        // Remove a bogie (AC Chair)
-        bogies.remove("AC Chair");
-
-        // Display after removal
-        System.out.println("\nBogies after removal of AC Chair:");
-        System.out.println(bogies);
-
-        // Check if Sleeper exists
-        if (bogies.contains("Sleeper")) {
-            System.out.println("\nSleeper bogie exists in the train.");
-        } else {
-            System.out.println("\nSleeper bogie does not exist in the train.");
+        // Display unique bogie IDs
+        System.out.println("Unique Bogie IDs in Train:");
+        for (String id : bogieIDs) {
+            System.out.println(id);
         }
 
-        // Final list state
-        System.out.println("\nFinal bogie list:");
-        System.out.println(bogies);
+        // Demonstrating add() return behavior
+        boolean isAdded = bogieIDs.add("B103"); // Already exists
+        if (!isAdded) {
+            System.out.println("\nDuplicate ID 'B103' was ignored.");
+        }
+
+        // Final set state
+        System.out.println("\nFinal Bogie ID Set:");
+        System.out.println(bogieIDs);
     }
 }
