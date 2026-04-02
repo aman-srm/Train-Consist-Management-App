@@ -1,37 +1,42 @@
 package app.src;
 
-import java.util.HashSet;
+import java.util.LinkedList;
 
 public class Train_Consist_Management_App {
 
     public static void main(String[] args) {
 
-        // Create HashSet for bogie IDs (ensures uniqueness)
-        HashSet<String> bogieIDs = new HashSet<>();
+        // Create LinkedList for train consist
+        LinkedList<String> train = new LinkedList<>();
 
-        // Adding bogie IDs
-        bogieIDs.add("B101");
-        bogieIDs.add("B102");
-        bogieIDs.add("B103");
+        // Add bogies
+        train.add("Engine");
+        train.add("Sleeper");
+        train.add("AC");
+        train.add("Cargo");
+        train.add("Guard");
 
-        // Attempt to add duplicate IDs
-        bogieIDs.add("B102"); // Duplicate
-        bogieIDs.add("B101"); // Duplicate
+        // Display initial consist
+        System.out.println("Initial Train Consist:");
+        System.out.println(train);
 
-        // Display unique bogie IDs
-        System.out.println("Unique Bogie IDs in Train:");
-        for (String id : bogieIDs) {
-            System.out.println(id);
+        // Insert Pantry Car at position 2 (index 2)
+        train.add(2, "Pantry Car");
+
+        System.out.println("\nAfter adding Pantry Car at position 2:");
+        System.out.println(train);
+
+        // Remove first and last bogie
+        train.removeFirst();
+        train.removeLast();
+
+        System.out.println("\nAfter removing first and last bogie:");
+        System.out.println(train);
+
+        // Final ordered train consist
+        System.out.println("\nFinal Train Consist:");
+        for (String bogie : train) {
+            System.out.println(bogie);
         }
-
-        // Demonstrating add() return behavior
-        boolean isAdded = bogieIDs.add("B103"); // Already exists
-        if (!isAdded) {
-            System.out.println("\nDuplicate ID 'B103' was ignored.");
-        }
-
-        // Final set state
-        System.out.println("\nFinal Bogie ID Set:");
-        System.out.println(bogieIDs);
     }
 }
