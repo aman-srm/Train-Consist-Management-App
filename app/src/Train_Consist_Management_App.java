@@ -1,31 +1,35 @@
 package app.src;
 
-import java.util.LinkedHashSet;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Train_Consist_Management_App {
 
     public static void main(String[] args) {
 
-        // Create LinkedHashSet for train formation
-        LinkedHashSet<String> trainFormation = new LinkedHashSet<>();
+        // Create HashMap for bogie-capacity mapping
+        HashMap<String, Integer> bogieCapacity = new HashMap<>();
 
-        // Add bogies
-        trainFormation.add("Engine");
-        trainFormation.add("Sleeper");
-        trainFormation.add("Cargo");
-        trainFormation.add("Guard");
+        // Insert bogie capacities
+        bogieCapacity.put("Sleeper", 72);
+        bogieCapacity.put("AC Chair", 60);
+        bogieCapacity.put("First Class", 24);
 
-        // Attempt to add duplicate bogie
-        trainFormation.add("Sleeper"); // Duplicate (will be ignored)
+        // Display all bogie-capacity mappings
+        System.out.println("Bogie Capacity Details:");
 
-        // Display formation
-        System.out.println("Final Train Formation (No duplicates, Order preserved):");
-        for (String bogie : trainFormation) {
-            System.out.println(bogie);
+        for (Map.Entry<String, Integer> entry : bogieCapacity.entrySet()) {
+            System.out.println("Bogie: " + entry.getKey() + 
+                               " | Capacity: " + entry.getValue());
         }
 
-        // Final state using println
-        System.out.println("\nFormation as list:");
-        System.out.println(trainFormation);
+        // Example: Fast lookup using key
+        String searchBogie = "Sleeper";
+        if (bogieCapacity.containsKey(searchBogie)) {
+            System.out.println("\nCapacity of " + searchBogie + " is: " 
+                                + bogieCapacity.get(searchBogie));
+        } else {
+            System.out.println("\nBogie not found.");
+        }
     }
 }
